@@ -13,7 +13,7 @@ public class NPEDemo {
 
 
         //  Creating OPTIONAL
-        Optional<String> optionalString = Optional.of("java");
+        Optional<String> optionalString = Optional.of("Java");
         System.out.println(optionalString);
 
         Optional<String> empty = Optional.empty();
@@ -31,6 +31,27 @@ public class NPEDemo {
 
         // get()
         System.out.println(optionalString.get());
-        System.out.println(mayBe.get());
+       // System.out.println(mayBe.get());
+
+        // orElse("default-value")
+        System.out.println(optionalString.orElse("default"));
+        System.out.println(mayBe.orElse("default"));
+        System.out.println(mayBe.orElse(null));
+        String temp = mayBe.orElse("default");
+
+        //orElseGet(<supplier>)
+        String result = mayBe.orElseGet(() -> {
+
+            System.out.println("generating default value");
+            return "defalut";
+        });
+        System.out.println(result);
+
+        // orElseThrow
+        String newResult = optionalString.orElseThrow(
+                () -> new RuntimeException("Not found")
+        );
+        System.out.println(newResult);
+
     }
 }
